@@ -1,6 +1,7 @@
 import girl1 from "../assets/girl1.jpg";
 import girl2 from "../assets/girl2.jpg";
 import boy1 from "../assets/boy1.jpg";
+import { motion } from "framer-motion";
 
 function Testimonials() {
   const testimonials = [
@@ -33,12 +34,13 @@ function Testimonials() {
     },
   ];
 
+  const scrollingTestimonials = [...testimonials, ...testimonials];
+
   return (
     <section
       id="testimonials"
-      className="py-20 bg-gradient-to-r from-green-50 via-white to-green-50">
+      className="py-20 bg-gradient-to-r from-green-50 via-white to-green-50 overflow-hidden">
       <div className="container mx-auto px-6 text-center">
-        {/* Heading */}
         <h2 className="text-4xl font-extrabold text-green-900 mb-6">
           What Our Customers Say
         </h2>
@@ -47,35 +49,33 @@ function Testimonials() {
           difference in people’s lives.
         </p>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((t) => (
+        <motion.div
+          className="flex gap-8"
+          animate={{ x: ["0%", "-100%"] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}>
+          {scrollingTestimonials.map((t, index) => (
             <div
-              key={t.id}
-              className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center transform transition hover:scale-105 hover:shadow-xl">
-              {/* Customer Image */}
+              key={index}
+              className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center min-w-[300px] max-w-[300px]">
               <img
                 src={t.image}
                 alt={t.name}
-                className="w-20 h-20 rounded-full border-4 border-green-200 object-cover mb-4"
+                className="w-20 h-20 rounded-full border-4 border-green-800 object-cover mb-4"
               />
 
-              {/* Name & Role */}
               <h3 className="text-lg font-bold text-green-800">{t.name}</h3>
               <p className="text-sm text-gray-500">{t.role}</p>
 
-              {/* Feedback */}
               <p className="mt-3 text-gray-600 text-sm italic">
                 “{t.feedback}”
               </p>
 
-              {/* Rating */}
               <div className="flex justify-center mt-3 text-yellow-500">
                 {"⭐".repeat(t.rating)}
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

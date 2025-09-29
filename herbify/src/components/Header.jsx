@@ -5,7 +5,7 @@ function Header() {
     <header className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
       <div className="container mx-auto flex justify-between items-center py-4 px-6">
         <div className="flex items-center space-x-2">
-          <img src={logo} alt="Herbify Logo" className="w-10 h-10" />
+          <img src={logo} alt="Herbify Logo" className="w-12 h-9" />
           <span className="text-2xl font-extrabold text-green-700">
             Herbify
           </span>
@@ -14,7 +14,7 @@ function Header() {
         {/* Nav Links */}
         <nav className="hidden md:flex space-x-8">
           <a
-            href="#home"
+            href="/"
             className="text-green-800 font-medium hover:text-green-600 transition">
             Home
           </a>
@@ -30,9 +30,8 @@ function Header() {
           </a>
         </nav>
 
-        {/* Shop Now Button */}
         <a
-          href="#shop"
+          href="#products"
           className="ml-6 px-5 py-2 rounded-full bg-green-600 text-white font-semibold shadow-md hover:bg-green-700 transition">
           Shop Now
         </a>

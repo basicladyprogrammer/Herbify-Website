@@ -2,6 +2,8 @@ import oil from "../assets/oil.png";
 import aloe from "../assets/aloe.png";
 import hairoil from "../assets/hairoil.png";
 import neem from "../assets/neem.png";
+import drop from "../assets/drop.png";
+import { motion } from "framer-motion";
 
 function Products() {
   const products = [
@@ -35,45 +37,64 @@ function Products() {
     },
   ];
 
+  const drops = [
+    { id: 1, left: "85%", delay: 0 },
+    { id: 2, left: "90%", delay: 2 },
+    { id: 3, left: "95%", delay: 4 },
+    // { id: 4, left: "2%", delay: 0 },
+    // { id: 5, left: "5%", delay: 2 },
+    // { id: 6, left: "10%", delay: 4 },
+  ];
+
   return (
     <section
       id="products"
-      className="py-20 bg-gradient-to-r from-green-50 via-white to-green-50">
-      <div className="container mx-auto px-6">
-        {/* Section Heading */}
+      className="relative py-20 bg-gradient-to-r from-green-50 via-white to-green-50 overflow-hidden">
+      {drops.map((d) => (
+        <motion.img
+          key={d.id}
+          src={drop}
+          alt="oil drop"
+          className="absolute top-0 w-20 opacity-90"
+          style={{ left: d.left }}
+          animate={{ y: ["-10%", "800%"], rotate: 0 }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            delay: d.delay,
+            ease: "linear",
+          }}
+        />
+      ))}
+
+      <div className="container mx-auto px-6 relative z-10">
         <h2 className="text-4xl font-extrabold text-center text-green-900 mb-12">
-          Our Herbal Products 🌿
+          Our Herbal Products
         </h2>
 
-        {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {products.map((product) => (
             <div
               key={product.id}
               className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center transform transition hover:scale-105 hover:shadow-2xl">
-              {/* Image */}
               <img
                 src={product.image}
                 alt={product.name}
                 className="w-32 h-32 object-contain mb-4 hover:rotate-3 transition"
               />
 
-              {/* Name */}
               <h3 className="text-xl font-semibold text-green-800">
                 {product.name}
               </h3>
 
-              {/* Description */}
               <p className="text-sm text-gray-600 mt-2">
                 {product.description}
               </p>
 
-              {/* Price */}
               <span className="mt-3 text-lg font-bold text-green-700">
                 {product.price}
               </span>
 
-              {/* Button */}
               <a
                 href="#shop"
                 className="mt-4 px-5 py-2 bg-green-600 text-white rounded-full font-medium shadow-md hover:bg-green-700 transition">

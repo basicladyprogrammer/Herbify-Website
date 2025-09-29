@@ -15,10 +15,8 @@ function Hero() {
         transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Overlay for dark effect */}
       <div className="absolute inset-0 bg-green-900/30 z-0" />
 
-      {/* Floating Leaf */}
       <motion.img
         src={dec1}
         alt="leaf"
@@ -27,7 +25,6 @@ function Hero() {
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Main Content */}
       <motion.div
         className="relative z-20 transform-gpu"
         whileHover={{ scale: 1.02, rotateX: 5, rotateY: -5 }}
@@ -40,7 +37,6 @@ function Hero() {
           Nature in Every Drop
         </motion.h1>
 
-        {/* Subtitle */}
         <motion.p
           className="mt-4 text-lg md:text-xl text-white max-w-2xl mx-auto drop-shadow-md"
           initial={{ opacity: 0 }}
@@ -50,7 +46,6 @@ function Hero() {
           wellness and beauty.
         </motion.p>
 
-        {/* Button */}
         <motion.a
           href="#products"
           className="mt-6 inline-block px-8 py-3 rounded-full bg-green-600 text-white font-bold shadow-lg hover:bg-green-700 transition"

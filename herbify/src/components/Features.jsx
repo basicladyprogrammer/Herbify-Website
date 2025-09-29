@@ -1,3 +1,7 @@
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import windPng from "../assets/wind.png";
+
 function Features() {
   const features = [
     {
@@ -30,10 +34,29 @@ function Features() {
     },
   ];
 
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], ["-10%", "50%"]);
+
+  const rotate = useTransform(scrollYProgress, [0, 1], [-5, 5]);
+
   return (
-    <section id="features" className="py-20 bg-green-50">
-      <div className="container mx-auto px-6 text-center">
-        {/* Section Heading */}
+    <section
+      id="features"
+      ref={ref}
+      className="relative py-20 bg-green-50 overflow-hidden">
+      <motion.img
+        src={windPng}
+        alt="wind leaves"
+        className="absolute top-0 left-0 right-0 w-[1200px] opacity-70 pointer-events-none"
+        style={{ x, rotate }}
+      />
+
+      <div className="container mx-auto px-6 text-center relative z-10">
         <h2 className="text-4xl font-extrabold text-green-900 mb-6">
           Why Choose Herbify?
         </h2>
@@ -48,15 +71,12 @@ function Features() {
             <div
               key={feature.id}
               className="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center transform transition hover:scale-105 hover:shadow-xl">
-              {/* Icon */}
               <div className="text-5xl mb-4">{feature.icon}</div>
 
-              {/* Title */}
               <h3 className="text-xl font-bold text-green-800 mb-2">
                 {feature.title}
               </h3>
 
-              {/* Description */}
               <p className="text-sm text-gray-600">{feature.description}</p>
             </div>
           ))}
